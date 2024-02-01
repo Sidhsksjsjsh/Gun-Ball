@@ -20,15 +20,14 @@ T2:Toggle("Auto vote",false,function(value)
 end)
 
 lib:HookCalled(function(self,args)
-    local srvcplr = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
-     if self == "RemoteEvent" and args[1]["name"] == "targetReached" and args[1]["origin"] == "flaretargets" and _G.sht == true then
-      args[2][1] = srvcplr
+    if self == "RemoteEvent" and args[1]["name"] == "targetReached" and args[1]["origin"] == "flaretargets" and _G.sht == true then
+      args[2][1] = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
      return self.FireServer(self,unpack(args))
     elseif self == "RemoteEvent" and args[1]["name"] == "reached_notice" and args[1]["origin"] == "flaretargets" and _G.sht == true then
-      args[2][1] = srvcplr
+      args[2][1] = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
       return self.FireServer(self,unpack(args))
     elseif self == "NETWORK" and args[1] == "nextTarget" and _G.sht == true then
-      args[2] = srvcplr
+      args[2] = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
       return self.FireServer(self,unpack(args))
     end
 end)
